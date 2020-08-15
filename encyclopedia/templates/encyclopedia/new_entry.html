@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+  New Entry
+{% endblock %}
+
+{% block body %}
+  {% if route == "new_entry" %}
+  <form class="container" action="{% url route %}" method="post">
+    {% csrf_token %}
+    {{ entryForm }}
+    <br>
+    <div class="form-group">
+      <input type="submit" class="btn btn-success" value="Save" >
+    </div>
+
+  </form>
+  {% else %}
+  <form class="container" action="{% url route title=title %}" method="post">
+    {% csrf_token %}
+    {{ entryForm }}
+    <br>
+    <div class="form-group">
+      <input type="submit" class="btn btn-success" value="Save" >
+    </div>
+
+  </form>
+  {% endif %}
+{% endblock %}
